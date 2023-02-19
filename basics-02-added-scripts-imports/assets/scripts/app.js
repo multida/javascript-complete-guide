@@ -2,8 +2,9 @@ const defaultResult = 0;
 let currentResult = defaultResult;
 
 function add() {
-  const calcDescription = `${currentResult} + ${userInput.value.toString()}`;
-  currentResult = currentResult + +userInput.value;
+  const enteredNumber = parseInt(userInput.value);
+  const calcDescription = `${currentResult} + ${enteredNumber}`;
+  currentResult = currentResult + enteredNumber;
   /* 
     value를 받아오면 문자열로 오기 때문에 숫자로 바꿔줘야 한다.
     1. parseInt/parseFloat -> parseInt(userInput.value)
