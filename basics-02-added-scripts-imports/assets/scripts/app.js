@@ -2,6 +2,7 @@ const defaultResult = 0;
 let currentResult = defaultResult;
 
 function add() {
+  const calcDescription = `${currentResult} + ${userInput.value.toString()}`;
   currentResult = currentResult + +userInput.value;
   /* 
     value를 받아오면 문자열로 오기 때문에 숫자로 바꿔줘야 한다.
@@ -11,7 +12,7 @@ function add() {
     숫자를 문자열로 변환해주는 것 .toString
     currentResult.toString()
   */
-  outputResult(currentResult, "");
+  outputResult(currentResult, calcDescription);
 }
 
 addBtn.addEventListener("click", add);
