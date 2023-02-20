@@ -1,8 +1,13 @@
 const defaultResult = 0;
 let currentResult = defaultResult;
 
+//userInput을 숫자로 제공
+function getUserNumberInput() {
+  return parseInt(userInput.value);
+}
+
 function add() {
-  const enteredNumber = parseInt(userInput.value);
+  const enteredNumber = getUserNumberInput();
   const calcDescription = `${currentResult} + ${enteredNumber}`;
   currentResult = currentResult + enteredNumber;
   /* 
