@@ -1,5 +1,6 @@
 const defaultResult = 0;
 let currentResult = defaultResult;
+let logEntries = [];
 
 //userInput을 숫자로 제공
 function getUserNumberInput() {
@@ -11,6 +12,22 @@ function createAndWriteOutput(operator, resultBeforeCalc, calcNumber) {
   const calcDescription = `${resultBeforeCalc} ${operator} ${calcNumber}`;
 
   outputResult(currentResult, calcDescription);
+}
+
+function writeToLog(
+  operationIdentifier,
+  prevResult,
+  operationNumber,
+  newResult
+) {
+  const logEntry = {
+    operation: operationIdentifier,
+    prevResult: prevResult,
+    number: operationNumber,
+    result: newResult,
+  };
+  logEntries.push(logEntry);
+  console.log(logEntries);
 }
 
 function add() {
@@ -26,6 +43,7 @@ function add() {
     숫자를 문자열로 변환해주는 것 .toString
     currentResult.toString()
   */
+  writeToLog("Add", initialResult, enteredNumber, currentResult);
 }
 
 function subtract() {
@@ -34,6 +52,8 @@ function subtract() {
   currentResult = currentResult - enteredNumber;
 
   createAndWriteOutput("-", initialResult, enteredNumber);
+
+  writeToLog("Subtract", initialResult, enteredNumber, currentResult);
 }
 
 function multiply() {
@@ -42,6 +62,8 @@ function multiply() {
   currentResult = currentResult * enteredNumber;
 
   createAndWriteOutput("*", initialResult, enteredNumber);
+
+  writeToLog("Multiply", initialResult, enteredNumber, currentResult);
 }
 
 function divide() {
@@ -50,6 +72,7 @@ function divide() {
   currentResult = currentResult / enteredNumber;
 
   createAndWriteOutput("/", initialResult, enteredNumber);
+  writeToLog("Divide", initialResult, enteredNumber, currentResult);
 }
 
 addBtn.addEventListener("click", add);
