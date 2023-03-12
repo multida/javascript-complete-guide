@@ -30,49 +30,41 @@ function writeToLog(
   console.log(logEntries);
 }
 
-function add() {
+function calculateResult(calculationType) {
   const enteredNumber = getUserNumberInput();
   const initialResult = currentResult;
-  currentResult = currentResult + enteredNumber;
-  createAndWriteOutput("+", initialResult, enteredNumber);
-  /* 
-    value를 받아오면 문자열로 오기 때문에 숫자로 바꿔줘야 한다.
-    1. parseInt/parseFloat -> parseInt(userInput.value)
-    2. + -> 문자열 앞에 +가 붙으면 숫자로 전환 가능함.
+  let mathOperator;
+  if (calculationType === "add") {
+    currentResult = currentResult + enteredNumber;
+    mathOperator = "+";
+  } else if (calculationType === "subtract") {
+    currentResult -= enteredNumber;
+    mathOperator = "-";
+  } else if (calculationType === "multiply") {
+    currentResult *= enteredNumber;
+    mathOperator = "*";
+  } else if (calculationType === "divide") {
+    currentResult /= enteredNumber;
+    mathOperator = "/";
+  }
+  createAndWriteOutput(mathOperator, initialResult, enteredNumber);
+  writeToLog(calculationType, initialResult, enteredNumber, currentResult);
+}
 
-    숫자를 문자열로 변환해주는 것 .toString
-    currentResult.toString()
-  */
-  writeToLog("Add", initialResult, enteredNumber, currentResult);
+function add() {
+  calculateResult("add");
 }
 
 function subtract() {
-  const enteredNumber = getUserNumberInput();
-  const initialResult = currentResult;
-  currentResult = currentResult - enteredNumber;
-
-  createAndWriteOutput("-", initialResult, enteredNumber);
-
-  writeToLog("Subtract", initialResult, enteredNumber, currentResult);
+  calculateResult("subtract");
 }
 
 function multiply() {
-  const enteredNumber = getUserNumberInput();
-  const initialResult = currentResult;
-  currentResult = currentResult * enteredNumber;
-
-  createAndWriteOutput("*", initialResult, enteredNumber);
-
-  writeToLog("Multiply", initialResult, enteredNumber, currentResult);
+  calculateResult("multiply");
 }
 
 function divide() {
-  const enteredNumber = getUserNumberInput();
-  const initialResult = currentResult;
-  currentResult = currentResult / enteredNumber;
-
-  createAndWriteOutput("/", initialResult, enteredNumber);
-  writeToLog("Divide", initialResult, enteredNumber, currentResult);
+  calculateResult("divide");
 }
 
 addBtn.addEventListener("click", add);
